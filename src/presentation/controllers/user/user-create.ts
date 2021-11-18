@@ -12,5 +12,20 @@ export class UserCreateController implements Controller {
         }
       }
     }
+
+    const { name, username, birthdate, address, addressNumber, primaryPhone, description } = httpRequest
+
+    return {
+      statusCode: 201,
+      body: {
+        name,
+        username,
+        birthdate,
+        address,
+        addressNumber,
+        primaryPhone,
+        description
+      }
+    }
   }
 }
