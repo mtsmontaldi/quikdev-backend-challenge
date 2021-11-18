@@ -1,4 +1,5 @@
 import { Controller, HttpResponse } from '../../protocols'
+import { MissingParamError } from '../../errors/missing-param-error'
 
 export class UserCreateController implements Controller {
   async handle (httpRequest: any): Promise<HttpResponse> {
@@ -8,7 +9,7 @@ export class UserCreateController implements Controller {
       if (!httpRequest[field]) {
         return {
           statusCode: 400,
-          body: new Error()
+          body: new MissingParamError(field)
         }
       }
     }
