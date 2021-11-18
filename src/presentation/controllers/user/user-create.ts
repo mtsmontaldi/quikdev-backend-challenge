@@ -10,32 +10,39 @@ export class UserCreateController implements Controller {
   }
 
   async handle (httpRequest: any): Promise<HttpResponse> {
-    const requiredFields = ['name', 'username', 'birthdate', 'address', 'addressNumber', 'primaryPhone', 'description']
+    try {
+      const requiredFields = ['name', 'username', 'birthdate', 'address', 'addressNumber', 'primaryPhone', 'description']
 
-    for (const field of requiredFields) {
-      if (!httpRequest[field]) {
-        return {
-          statusCode: 400,
-          body: new MissingParamError(field)
+      for (const field of requiredFields) {
+        if (!httpRequest[field]) {
+          return {
+            statusCode: 400,
+            body: new MissingParamError(field)
+          }
         }
       }
-    }
 
-    const { name, username, birthdate, address, addressNumber, primaryPhone, description } = httpRequest
+      const { name, username, birthdate, address, addressNumber, primaryPhone, description } = httpRequest
 
-    const createdAccount = await this.addUser.add({
-      name,
-      username,
-      address,
-      addressNumber,
-      birthdate,
-      primaryPhone,
-      description
-    })
+      const createdAccount = await this.addUser.add({
+        name,
+        username,
+        address,
+        addressNumber,
+        birthdate,
+        primaryPhone,
+        description
+      })
 
-    return {
-      statusCode: 201,
-      body: createdAccount
+      return {
+        statusCode: 201,
+        body: createdAccount
+      }
+    } catch (error) {
+      return {
+        statusCode: 500,
+        body: new Error()
+      }
     }
   }
 }
