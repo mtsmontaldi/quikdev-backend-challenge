@@ -137,4 +137,31 @@ describe('CreateUser Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new Error())
   })
+
+  test('Should return 201 if a user is created successfully', async () => {
+    const { sut } = makeSut()
+
+    const httpRequest = {
+      name: 'valid_name',
+      username: 'valid_username',
+      birthdate: 'valid_birthdate',
+      address: 'valid_address',
+      addressNumber: 'valid_address_number',
+      primaryPhone: '(11) 11111-1111',
+      description: 'valid_description'
+    }
+
+    const httpResponse = await sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(201)
+    expect(httpResponse.body).toEqual({
+      name: 'valid_name',
+      username: 'valid_username',
+      birthdate: 'valid_birthdate',
+      address: 'valid_address',
+      addressNumber: 'valid_address_number',
+      primaryPhone: '(11) 11111-1111',
+      description: 'valid_description'
+    })
+  })
 })
