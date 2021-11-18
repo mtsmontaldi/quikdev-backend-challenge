@@ -1,14 +1,41 @@
 import { UserCreateController } from './user-create'
 import { MissingParamError } from '../../errors/missing-param-error'
+import { AddUser, AddUserModel } from '../../../domain/usecases/add-user'
+import { UserModel } from '../../../domain/models/user'
+
+const makeAddUser = (): AddUser => {
+  class AddUserStub implements AddUser {
+    async add (user: AddUserModel): Promise<UserModel> {
+      const fakeUser = {
+        id: 'valid_id',
+        name: 'valid_name',
+        username: 'valid_username',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        birthdate: new Date('2001-06-23'),
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description',
+        createdAt: new Date('2021-10-21')
+      }
+
+      return await new Promise(resolve => resolve(fakeUser))
+    }
+  }
+
+  return new AddUserStub()
+}
 
 interface SutTypes {
   sut: UserCreateController
+  addUserStub: AddUser
 }
 
 const makeSut = (): SutTypes => {
-  const sut = new UserCreateController()
+  const addUserStub = makeAddUser()
+  const sut = new UserCreateController(addUserStub)
   return {
-    sut
+    sut,
+    addUserStub
   }
 }
 
@@ -145,9 +172,9 @@ describe('CreateUser Controller', () => {
     const httpRequest = {
       name: 'valid_name',
       username: 'valid_username',
-      birthdate: 'valid_birthdate',
       address: 'valid_address',
       addressNumber: 'valid_address_number',
+      birthdate: new Date('2001-06-23'),
       primaryPhone: '(11) 11111-1111',
       description: 'valid_description'
     }
@@ -156,13 +183,15 @@ describe('CreateUser Controller', () => {
 
     expect(httpResponse.statusCode).toBe(201)
     expect(httpResponse.body).toEqual({
+      id: 'valid_id',
       name: 'valid_name',
       username: 'valid_username',
-      birthdate: 'valid_birthdate',
       address: 'valid_address',
       addressNumber: 'valid_address_number',
+      birthdate: new Date('2001-06-23'),
       primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      description: 'valid_description',
+      createdAt: new Date('2021-10-21')
     })
   })
 })
