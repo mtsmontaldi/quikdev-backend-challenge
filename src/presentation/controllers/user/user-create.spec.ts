@@ -194,4 +194,26 @@ describe('CreateUser Controller', () => {
       createdAt: new Date('2021-10-21')
     })
   })
+
+  test('Should return 500 if addUser throws', async () => {
+    const { sut, addUserStub } = makeSut()
+    jest.spyOn(addUserStub, 'add').mockImplementationOnce(async () => {
+      return await new Promise((resolve, reject) => reject(new Error()))
+    })
+
+    const httpRequest = {
+      name: 'valid_name',
+      username: 'valid_username',
+      address: 'valid_address',
+      addressNumber: 'valid_address_number',
+      birthdate: new Date('2001-06-23'),
+      primaryPhone: '(11) 11111-1111',
+      description: 'valid_description'
+    }
+
+    const httpResponse = await sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new Error())
+  })
 })
