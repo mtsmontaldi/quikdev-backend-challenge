@@ -182,17 +182,15 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(201)
-    expect(httpResponse.body).toEqual({
-      id: 'valid_id',
-      name: 'valid_name',
-      username: 'valid_username',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      birthdate: new Date('2001-06-23'),
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description',
-      createdAt: new Date('2021-10-21')
-    })
+    expect(httpResponse.body.id).toBeTruthy()
+    expect(httpResponse.body.createdAt).toBeTruthy()
+    expect(httpResponse.body.name).toBe('valid_name')
+    expect(httpResponse.body.username).toBe('valid_username')
+    expect(httpResponse.body.address).toBe('valid_address')
+    expect(httpResponse.body.addressNumber).toBe('valid_address_number')
+    expect(httpResponse.body.birthdate).toEqual(new Date('2001-06-23'))
+    expect(httpResponse.body.primaryPhone).toBe('(11) 11111-1111')
+    expect(httpResponse.body.description).toBe('valid_description')
   })
 
   test('Should return 500 if addUser throws', async () => {
