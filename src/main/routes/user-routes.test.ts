@@ -25,8 +25,9 @@ describe('User Routes', () => {
         birthdate: new Date('2021-06-23'),
         address: 'any_address',
         addressNumber: 'any_address',
+        primaryPhone: '(11) 1111-1111',
         description: 'any_description'
       })
-      .expect(200)
+      .expect(201)
   })
 })
