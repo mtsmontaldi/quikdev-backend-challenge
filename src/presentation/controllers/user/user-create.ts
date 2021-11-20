@@ -1,4 +1,4 @@
-import { Controller, HttpResponse } from '../../protocols'
+import { Controller, HttpResponse, HttpRequest } from '../../protocols'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { AddUser } from '../../../domain/usecases/add-user'
 
@@ -9,12 +9,12 @@ export class UserCreateController implements Controller {
     this.addUser = addUser
   }
 
-  async handle (httpRequest: any): Promise<HttpResponse> {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredFields = ['name', 'username', 'birthdate', 'address', 'addressNumber', 'primaryPhone', 'description']
 
       for (const field of requiredFields) {
-        if (!httpRequest[field]) {
+        if (!httpRequest.body[field]) {
           return {
             statusCode: 400,
             body: new MissingParamError(field)
@@ -22,7 +22,7 @@ export class UserCreateController implements Controller {
         }
       }
 
-      const { name, username, birthdate, address, addressNumber, primaryPhone, description } = httpRequest
+      const { name, username, birthdate, address, addressNumber, primaryPhone, description } = httpRequest.body
 
       const createdAccount = await this.addUser.add({
         name,

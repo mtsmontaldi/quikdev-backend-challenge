@@ -44,12 +44,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      username: 'valid_username',
-      birthdate: 'valid_birthdate',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        username: 'valid_username',
+        birthdate: 'valid_birthdate',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -62,12 +64,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      birthdate: 'valid_birthdate',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        birthdate: 'valid_birthdate',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -80,12 +84,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -98,12 +104,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      birthdate: 'valid_birthdate',
-      addressNumber: 'valid_address_number',
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        birthdate: 'valid_birthdate',
+        addressNumber: 'valid_address_number',
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -116,12 +124,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      birthdate: 'valid_birthdate',
-      address: 'valid_address',
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        birthdate: 'valid_birthdate',
+        address: 'valid_address',
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -134,12 +144,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      birthdate: 'valid_birthdate',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        birthdate: 'valid_birthdate',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -152,12 +164,14 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      birthdate: 'valid_birthdate',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      primaryPhone: '(11) 11111-1111'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        birthdate: 'valid_birthdate',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        primaryPhone: '(11) 11111-1111'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -170,13 +184,15 @@ describe('CreateUser Controller', () => {
     const { sut } = makeSut()
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      birthdate: new Date('2001-06-23'),
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        birthdate: new Date('2001-06-23'),
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
@@ -200,13 +216,15 @@ describe('CreateUser Controller', () => {
     })
 
     const httpRequest = {
-      name: 'valid_name',
-      username: 'valid_username',
-      address: 'valid_address',
-      addressNumber: 'valid_address_number',
-      birthdate: new Date('2001-06-23'),
-      primaryPhone: '(11) 11111-1111',
-      description: 'valid_description'
+      body: {
+        name: 'valid_name',
+        username: 'valid_username',
+        address: 'valid_address',
+        addressNumber: 'valid_address_number',
+        birthdate: new Date('2001-06-23'),
+        primaryPhone: '(11) 11111-1111',
+        description: 'valid_description'
+      }
     }
 
     const httpResponse = await sut.handle(httpRequest)
