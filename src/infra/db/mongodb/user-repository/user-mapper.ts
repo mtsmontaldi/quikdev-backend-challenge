@@ -15,7 +15,5 @@ export const userMapper = (userData: any): UserModel => {
     description
   }
 
-  console.log(user)
-
   return user
 }
