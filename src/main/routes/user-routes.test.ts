@@ -1,7 +1,21 @@
 import request from 'supertest'
 import app from '../config/app'
+import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 
 describe('User Routes', () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(process.env.MONGO_URL)
+  })
+
+  afterAll(async () => {
+    await MongoHelper.disconnect()
+  })
+
+  beforeEach(async () => {
+    const userCollection = MongoHelper.getCollection('users')
+    await userCollection.deleteMany({})
+  })
+
   test('Should return an user on success', async () => {
     await request(app)
       .post('/api/user')
