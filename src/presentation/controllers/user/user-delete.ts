@@ -21,9 +21,16 @@ export class UserDeleteController implements Controller {
 
       const response = await this.deleteUser.delete(id)
 
-      return {
-        statusCode: 204,
-        body: response
+      if (response) {
+        return {
+          statusCode: 204,
+          body: []
+        }
+      } else {
+        return {
+          statusCode: 400,
+          body: new Error('User not found')
+        }
       }
     } catch (error) {
       return {

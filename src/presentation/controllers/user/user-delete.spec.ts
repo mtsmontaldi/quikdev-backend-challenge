@@ -65,4 +65,21 @@ describe('DeleteUser Controller', () => {
 
     expect(response.statusCode).toBe(500)
   })
+
+  test('Should return 400 if user not found', async () => {
+    const { sut, deleteUserStub } = makeSut()
+    jest.spyOn(deleteUserStub, 'delete').mockImplementationOnce(async () => {
+      return await new Promise(resolve => resolve(false))
+    })
+
+    const httpRequest = {
+      params: {
+        id: 'invalid_userID'
+      }
+    }
+
+    const response = await sut.handle(httpRequest)
+
+    expect(response.statusCode).toBe(400)
+  })
 })
