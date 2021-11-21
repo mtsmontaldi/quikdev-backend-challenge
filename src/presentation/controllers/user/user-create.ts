@@ -17,7 +17,7 @@ export class UserCreateController implements Controller {
         if (!httpRequest.body[field]) {
           return {
             statusCode: 400,
-            body: new MissingParamError(field)
+            body: { error: new MissingParamError(field).message }
           }
         }
       }
