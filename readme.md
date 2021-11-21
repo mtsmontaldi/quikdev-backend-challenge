@@ -29,7 +29,7 @@ $ git clone https://github.com/marceloWired/quikdev-backend-challenge.git
 ```bash
 
 # navegando até a pasta
-$ cd ./backend-nimbus-meteorologia
+$ cd ./quikdev-backend-challenge
 
 # mudando para a branch correta
 $ git checkout marcelo-santos
