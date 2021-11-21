@@ -14,6 +14,12 @@ export class UserFindController implements Controller {
 
       const result = await this.findUser.find(id)
 
+      if (!result) {
+        return {
+          statusCode: 204,
+          body: []
+        }
+      }
       return {
         statusCode: 200,
         body: result

@@ -67,4 +67,22 @@ describe('FindUser Controller', () => {
 
     expect(response.statusCode).toBe(500)
   })
+
+  test('Should return 204 if user not found', async () => {
+    const { sut, findUserStub } = makeSut()
+
+    jest.spyOn(findUserStub, 'find').mockImplementationOnce(async () => {
+      return await new Promise((resolve) => resolve(null))
+    })
+
+    const httpRequest = {
+      params: {
+        id: 'asihd982h2d9hhas8hd872h82h8h'
+      }
+    }
+
+    const httpResponse = await sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(204)
+  })
 })
