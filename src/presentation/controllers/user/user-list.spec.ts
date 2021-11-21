@@ -60,4 +60,13 @@ describe('User List Controller', () => {
 
     expect(httpResponse.statusCode).toBe(200)
   })
+  test('Should call ListUser', async () => {
+    const { sut, listUserStub } = makeSut()
+
+    const listUserStubSpy = jest.spyOn(listUserStub, 'list')
+
+    await sut.handle()
+
+    expect(listUserStubSpy).toHaveBeenCalled()
+  })
 })
