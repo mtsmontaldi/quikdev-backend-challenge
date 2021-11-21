@@ -6,18 +6,18 @@ export class UserDeleteMongoRepository implements DeleteUserRepository {
   private id: ObjectId
 
   async delete (userId: string): Promise<boolean> {
-    const userCollection = MongoHelper.getCollection('users')
     try {
       const makeObjectId = new ObjectId(userId)
       this.id = makeObjectId
-    } catch (error) {
-      return false
-    }
-    const { deletedCount } = await userCollection.deleteOne({ _id: new ObjectId(userId) })
+      const userCollection = MongoHelper.getCollection('users')
+      const { deletedCount } = await userCollection.deleteOne({ _id: this.id })
 
-    if (deletedCount > 0) {
-      return true
-    } else {
+      if (deletedCount > 0) {
+        return true
+      } else {
+        return false
+      }
+    } catch (error) {
       return false
     }
   }
