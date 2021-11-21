@@ -9,11 +9,18 @@ export class UserListController implements Controller {
   }
 
   async handle (): Promise<HttpResponse> {
-    const result = await this.listUser.list()
+    try {
+      const result = await this.listUser.list()
 
-    return {
-      statusCode: 200,
-      body: result
+      return {
+        statusCode: 200,
+        body: result
+      }
+    } catch (error) {
+      return {
+        statusCode: 500,
+        body: new Error()
+      }
     }
   }
 }
