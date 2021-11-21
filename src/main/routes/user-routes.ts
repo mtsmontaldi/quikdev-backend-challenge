@@ -1,10 +1,6 @@
 import { Router } from 'express'
-import { makeUserCreateController } from '../factories/user-create'
+import { makeUserCreateController, makeUserListController, makeUserFindController, makeUserDeleteController, makeUserUpdateController } from '../factories/'
 import { adaptRoute } from '../adapters/express-route-adapter'
-import { makeUserListController } from '../factories/user-list'
-import { makeUserFindController } from '../factories/user-find'
-import { makeUserDeleteController } from '../factories/user-delete'
-import { makeUserUpdateController } from '../factories/user-update'
 
 export default (router: Router): void => {
   router.post('/user', adaptRoute(makeUserCreateController()))
