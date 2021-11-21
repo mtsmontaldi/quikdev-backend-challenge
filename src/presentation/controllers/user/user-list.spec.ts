@@ -69,4 +69,15 @@ describe('User List Controller', () => {
 
     expect(listUserStubSpy).toHaveBeenCalled()
   })
+  test('Should return 500 if ListUser throws', async () => {
+    const { sut, listUserStub } = makeSut()
+
+    jest.spyOn(listUserStub, 'list').mockImplementationOnce(async () => {
+      return await new Promise((resolve, reject) => reject(new Error()))
+    })
+
+    const httpResponse = await sut.handle()
+
+    expect(httpResponse.statusCode).toBe(500)
+  })
 })
