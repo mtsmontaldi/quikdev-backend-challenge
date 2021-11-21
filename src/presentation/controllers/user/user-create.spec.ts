@@ -57,7 +57,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('name'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('name').message })
   })
 
   test('Should return 400 if no username is provided', async () => {
@@ -77,7 +77,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('username'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('username').message })
   })
 
   test('Should return 400 if no birthdate is provided', async () => {
@@ -97,7 +97,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('birthdate'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('birthdate').message })
   })
 
   test('Should return 400 if no address is provided', async () => {
@@ -117,7 +117,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('address'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('address').message })
   })
 
   test('Should return 400 if no addressNumber is provided', async () => {
@@ -137,7 +137,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('addressNumber'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('addressNumber').message })
   })
 
   test('Should return 400 if no primaryPhone is provided', async () => {
@@ -157,7 +157,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('primaryPhone'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('primaryPhone').message })
   })
 
   test('Should return 400 if no description is provided', async () => {
@@ -177,7 +177,7 @@ describe('CreateUser Controller', () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('description'))
+    expect(httpResponse.body).toEqual({ error: new MissingParamError('description').message })
   })
 
   test('Should return 201 if a user is created successfully', async () => {
