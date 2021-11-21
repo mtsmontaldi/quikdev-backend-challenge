@@ -6,7 +6,7 @@
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
     "test": "jest --runInBand",
-    "test:watch": "jest --passWithNoTests --silent --noStackTrace --runInBand --watch"
+    "test:watch": "jest --passWithNoTests --noStackTrace --runInBand --watch"
   },
   "repository": {
     "type": "git",

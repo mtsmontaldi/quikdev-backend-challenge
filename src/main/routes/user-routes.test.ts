@@ -30,4 +30,9 @@ describe('User Routes', () => {
       })
       .expect(201)
   })
+  test('Should return a list of users on success', async () => {
+    await request(app)
+      .get('/api/user')
+      .expect(200)
+  })
 })
