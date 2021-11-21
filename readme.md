@@ -57,6 +57,8 @@ Por padrão, a aplicação irá rodar na porta 5050.
 
 ## Testes
 
+<p>Os testes utilizam o MongoDb In Memory para serem realizados, assim não impactando no banco de produção.</p>
+
 <p>Para executar os testes, basta rodar o seguinte comando em seu terminal:</p>
 
 ```bash
